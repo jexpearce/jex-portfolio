@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Globe, BarChart3, Sparkles, Mail, Github, Linkedin, ExternalLink, MapPin, GraduationCap } from 'lucide-react';
 
-const Portfolio = () => {
+const App = () => {
   const [activeHeroImage, setActiveHeroImage] = useState(0);
   const [activeFlipImage, setActiveFlipImage] = useState(0);
   const [activeLociImage, setActiveLociImage] = useState(0);
@@ -531,4 +531,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default App;

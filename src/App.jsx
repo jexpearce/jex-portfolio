@@ -287,11 +287,11 @@ const Portfolio = () => {
               View Report
               <ExternalLink size={16} />
             </a>
-            <div className="grid md:grid-cols-3 gap-4">
-              <img src="img/heatmap.png" alt="Heatmap" className="rounded-lg border border-gray-800" />
-              <img src="img/pyramid.png" alt="Population Pyramid" className="rounded-lg border border-gray-800" />
-              <img src="img/correlation.png" alt="Correlation" className="rounded-lg border border-gray-800" />
-            </div>
+                         <div className="grid md:grid-cols-3 gap-4">
+               <img src="https://picsum.photos/400/300?random=60" alt="Heatmap" className="rounded-lg border border-gray-800" />
+               <img src="https://picsum.photos/400/300?random=61" alt="Population Pyramid" className="rounded-lg border border-gray-800" />
+               <img src="https://picsum.photos/400/300?random=62" alt="Correlation" className="rounded-lg border border-gray-800" />
+             </div>
           </div>
 
           {/* Data Analysis Reports */}
@@ -308,7 +308,7 @@ const Portfolio = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-              <img src="img/lurssen v others (14-24).png" alt="Super Yacht Analysis" className="rounded-lg border border-gray-800" />
+                             <img src="https://picsum.photos/600/400?random=63" alt="Super Yacht Analysis" className="rounded-lg border border-gray-800" />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -323,7 +323,7 @@ const Portfolio = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-              <img src="img/5Gcities.png" alt="5G Analysis" className="rounded-lg border border-gray-800" />
+                             <img src="https://picsum.photos/600/400?random=64" alt="5G Analysis" className="rounded-lg border border-gray-800" />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -338,7 +338,7 @@ const Portfolio = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-              <img src="img/houseprices.png" alt="Housing Price Prediction" className="rounded-lg border border-gray-800" />
+                             <img src="https://picsum.photos/600/400?random=65" alt="Housing Price Prediction" className="rounded-lg border border-gray-800" />
             </div>
           </div>
         </div>

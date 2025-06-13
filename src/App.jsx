@@ -75,7 +75,7 @@ const Portfolio = () => {
       <section id="about" className="min-h-screen flex items-center px-6 pt-20">
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white">
               Jex Pearce
             </h1>
             <p className="text-xl text-gray-400 mb-8 leading-relaxed">

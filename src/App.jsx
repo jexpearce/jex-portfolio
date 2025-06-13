@@ -23,33 +23,33 @@ const Portfolio = () => {
   };
 
   const heroImages = [
-    { src: 'placeholder-hero-1.jpg', alt: 'Jex Portrait 1' },
-    { src: 'placeholder-hero-2.jpg', alt: 'Jex Portrait 2' },
-    { src: 'placeholder-hero-3.jpg', alt: 'Jex Portrait 3' }
+    { src: 'https://picsum.photos/600/800?random=1', alt: 'Jex Portrait 1' },
+    { src: 'https://picsum.photos/600/800?random=2', alt: 'Jex Portrait 2' },
+    { src: 'https://picsum.photos/600/800?random=3', alt: 'Jex Portrait 3' }
   ];
 
   const flipImages = Array(8).fill(null).map((_, i) => ({
-    src: `placeholder-flip-${i + 1}.jpg`,
+    src: `https://picsum.photos/400/600?random=${10 + i}`,
     description: `Placeholder description for image ${i + 1}`
   }));
 
   const lociImages = Array(8).fill(null).map((_, i) => ({
-    src: `placeholder-loci-${i + 1}.jpg`,
+    src: `https://picsum.photos/400/600?random=${20 + i}`,
     description: `Placeholder description for image ${i + 1}`
   }));
 
   const adventuresImages = Array(3).fill(null).map((_, i) => ({
-    src: `placeholder-adventures-${i + 1}.jpg`,
+    src: `https://picsum.photos/800/600?random=${30 + i}`,
     description: `Short description ${i + 1}`
   }));
 
   const dissertationMedia = Array(8).fill(null).map((_, i) => ({
-    src: `placeholder-dissertation-${i + 1}.${i < 2 ? 'jpg' : 'mp4'}`,
-    type: i < 2 ? 'image' : 'video'
+    src: `https://picsum.photos/800/600?random=${40 + i}`,
+    type: 'image'
   }));
 
   const waveImages = Array(4).fill(null).map((_, i) => ({
-    src: `placeholder-wave-${i + 1}.jpg`
+    src: `https://picsum.photos/400/300?random=${50 + i}`
   }));
 
   return (

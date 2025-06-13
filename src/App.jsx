@@ -23,33 +23,33 @@ const Portfolio = () => {
   };
 
   const heroImages = [
-    { src: 'https://via.placeholder.com/600x800/4A90E2/FFFFFF?text=Jex+Portrait+1', alt: 'Jex Portrait 1' },
-    { src: 'https://via.placeholder.com/600x800/50E3C2/FFFFFF?text=Jex+Portrait+2', alt: 'Jex Portrait 2' },
-    { src: 'https://via.placeholder.com/600x800/F5A623/FFFFFF?text=Jex+Portrait+3', alt: 'Jex Portrait 3' }
+    { src: 'https://picsum.photos/600/800?random=1', alt: 'Jex Portrait 1' },
+    { src: 'https://picsum.photos/600/800?random=2', alt: 'Jex Portrait 2' },
+    { src: 'https://picsum.photos/600/800?random=3', alt: 'Jex Portrait 3' }
   ];
 
   const flipImages = Array(8).fill(null).map((_, i) => ({
-    src: `https://via.placeholder.com/400x600/7ED321/FFFFFF?text=FL!P+${i + 1}`,
-    description: `FL!P app screenshot ${i + 1} - Productivity timer with motion tracking`
+    src: `https://picsum.photos/400/600?random=${10 + i}`,
+    description: `Placeholder description for image ${i + 1}`
   }));
 
   const lociImages = Array(8).fill(null).map((_, i) => ({
-    src: `https://via.placeholder.com/400x600/BD10E0/FFFFFF?text=Loci+${i + 1}`,
-    description: `Loci app screenshot ${i + 1} - Real-time music discovery and location-based matching`
+    src: `https://picsum.photos/400/600?random=${20 + i}`,
+    description: `Placeholder description for image ${i + 1}`
   }));
 
   const adventuresImages = Array(3).fill(null).map((_, i) => ({
-    src: `https://via.placeholder.com/800x600/B8E986/FFFFFF?text=Adventure+${i + 1}`,
-    description: `Authentic Adventures feature ${i + 1}`
+    src: `https://picsum.photos/800/600?random=${30 + i}`,
+    description: `Short description ${i + 1}`
   }));
 
   const dissertationMedia = Array(8).fill(null).map((_, i) => ({
-    src: `https://via.placeholder.com/800x600/9013FE/FFFFFF?text=Math+${i + 1}`,
+    src: `https://picsum.photos/800/600?random=${40 + i}`,
     type: 'image'
   }));
 
   const waveImages = Array(4).fill(null).map((_, i) => ({
-    src: `https://via.placeholder.com/400x300/417505/FFFFFF?text=Wave+${i + 1}`
+    src: `https://picsum.photos/400/300?random=${50 + i}`
   }));
 
   return (
@@ -106,10 +106,6 @@ const Portfolio = () => {
                 src={heroImages[activeHeroImage].src} 
                 alt={heroImages[activeHeroImage].alt}
                 className="w-full h-full object-cover"
-                onError={(e) => {
-                  console.error('Hero image failed to load:', e.target.src);
-                  e.target.src = 'https://via.placeholder.com/600x800/4A90E2/FFFFFF?text=Loading...';
-                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/50 to-transparent" />
             </div>
@@ -292,9 +288,9 @@ const Portfolio = () => {
               <ExternalLink size={16} />
             </a>
                          <div className="grid md:grid-cols-3 gap-4">
-               <img src="https://via.placeholder.com/400x300/E74C3C/FFFFFF?text=Heatmap" alt="Heatmap" className="rounded-lg border border-gray-800" />
-               <img src="https://via.placeholder.com/400x300/3498DB/FFFFFF?text=Population+Pyramid" alt="Population Pyramid" className="rounded-lg border border-gray-800" />
-               <img src="https://via.placeholder.com/400x300/2ECC71/FFFFFF?text=Correlation" alt="Correlation" className="rounded-lg border border-gray-800" />
+               <img src="https://picsum.photos/400/300?random=60" alt="Heatmap" className="rounded-lg border border-gray-800" />
+               <img src="https://picsum.photos/400/300?random=61" alt="Population Pyramid" className="rounded-lg border border-gray-800" />
+               <img src="https://picsum.photos/400/300?random=62" alt="Correlation" className="rounded-lg border border-gray-800" />
              </div>
           </div>
 
@@ -312,7 +308,7 @@ const Portfolio = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-                             <img src="https://via.placeholder.com/600x400/8E44AD/FFFFFF?text=Super+Yacht+Analysis" alt="Super Yacht Analysis" className="rounded-lg border border-gray-800" />
+                             <img src="https://picsum.photos/600/400?random=63" alt="Super Yacht Analysis" className="rounded-lg border border-gray-800" />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -327,7 +323,7 @@ const Portfolio = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-                             <img src="https://via.placeholder.com/600x400/E67E22/FFFFFF?text=5G+Analysis" alt="5G Analysis" className="rounded-lg border border-gray-800" />
+                             <img src="https://picsum.photos/600/400?random=64" alt="5G Analysis" className="rounded-lg border border-gray-800" />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -342,7 +338,7 @@ const Portfolio = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-                             <img src="https://via.placeholder.com/600x400/16A085/FFFFFF?text=Housing+Price+ML" alt="Housing Price Prediction" className="rounded-lg border border-gray-800" />
+                             <img src="https://picsum.photos/600/400?random=65" alt="Housing Price Prediction" className="rounded-lg border border-gray-800" />
             </div>
           </div>
         </div>

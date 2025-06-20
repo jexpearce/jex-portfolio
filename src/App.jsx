@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Globe, BarChart3, Sparkles, Mail, Github, Linkedin, ExternalLink, MapPin, GraduationCap } from 'lucide-react';
 
 const App = () => {
@@ -9,13 +9,76 @@ const App = () => {
   const [activeDissertationMedia, setActiveDissertationMedia] = useState(0);
   const [activeWaveImage, setActiveWaveImage] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const particlesRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+    
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  // Floating particles animation
+  useEffect(() => {
+    const particles = [];
+    const canvas = particlesRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(34, 211, 238, ${particle.opacity})`;
+        ctx.fill();
+      });
+      
+      requestAnimationFrame(animate);
+    };
+    
+    animate();
+    
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const scrollToSection = (id) => {
@@ -53,18 +116,66 @@ const App = () => {
   }));
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
+      {/* Animated Background Canvas */}
+      <canvas 
+        ref={particlesRef}
+        className="fixed inset-0 pointer-events-none z-0 opacity-30"
+      />
+      
+      {/* Animated Diagonal Elements */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div 
+          className="absolute w-1 bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent transform rotate-45 transition-all duration-1000"
+          style={{
+            height: '200vh',
+            left: `${mousePosition.x * 0.01}%`,
+            top: '-50vh',
+            animationDelay: '0s'
+          }}
+        />
+        <div 
+          className="absolute w-1 bg-gradient-to-b from-transparent via-indigo-500/15 to-transparent transform -rotate-45 transition-all duration-1000"
+          style={{
+            height: '200vh',
+            right: `${mousePosition.x * 0.01}%`,
+            top: '-50vh',
+            animationDelay: '0.5s'
+          }}
+        />
+        <div 
+          className="absolute w-0.5 bg-gradient-to-b from-transparent via-orange-500/10 to-transparent transform rotate-12 transition-all duration-1000"
+          style={{
+            height: '200vh',
+            left: `${50 + mousePosition.x * 0.005}%`,
+            top: '-50vh',
+            animationDelay: '1s'
+          }}
+        />
+      </div>
+
+      {/* Geometric Pattern Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-5">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-indigo-500/10" />
+        <div className="absolute top-20 left-20 w-32 h-32 border border-cyan-500/20 rounded-full animate-pulse" />
+        <div className="absolute top-40 right-40 w-24 h-24 border border-indigo-500/20 rotate-45 animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-40 left-1/3 w-20 h-20 border border-orange-500/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-gray-950/95 backdrop-blur-md border-b border-gray-800' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-center space-x-8">
-            {['About', 'iOS Apps', 'Data Science & Analytics', 'Creative Engineering', 'Contact'].map((item) => (
+            {['About', 'iOS Apps', 'Data Science & Analytics', 'Creative Engineering', 'Contact'].map((item, index) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase().replace(/[&\s]/g, '-'))}
-                className="text-sm font-medium text-gray-400 hover:text-cyan-400 transition-colors"
+                className="text-sm font-medium text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {item}
+                <span className="relative">
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                </span>
               </button>
             ))}
           </div>
@@ -72,42 +183,45 @@ const App = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="min-h-screen flex items-center px-6 pt-20">
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+      <section id="about" className="min-h-screen flex items-center px-6 pt-20 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-indigo-500/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white">
-              Jex Pearce
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white relative group">
+              <span className="relative z-10">Jex Pearce</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-indigo-400/20 to-orange-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
             </h1>
             <p className="text-xl text-gray-400 mb-8 leading-relaxed">
               Durham mathematics graduate crafting elegant iOS experiences. Built FL!P for the App Store, developing Loci in beta. Also passionate about data science and creative engineering.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://www.durham.ac.uk/" target="_blank" rel="noopener noreferrer" 
-                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors">
-                <GraduationCap size={20} />
+                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group">
+                <GraduationCap size={20} className="group-hover:rotate-12 transition-transform duration-300" />
                 Durham University, UK
               </a>
               <a href="https://www.linkedin.com/in/jex-pearce-904bb7224/" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors">
-                <Linkedin size={20} />
+                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group">
+                <Linkedin size={20} className="group-hover:rotate-12 transition-transform duration-300" />
                 LinkedIn
               </a>
               <a href="https://github.com/jexpearce" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors">
-                <Github size={20} />
+                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group">
+                <Github size={20} className="group-hover:rotate-12 transition-transform duration-300" />
                 GitHub
               </a>
             </div>
           </div>
           
-          <div className="relative">
-            <div className="aspect-[3/4] relative overflow-hidden rounded-2xl border border-gray-800">
+          <div className="relative group">
+            <div className="aspect-[3/4] relative overflow-hidden rounded-2xl border border-gray-800 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20">
               <img 
                 src={heroImages[activeHeroImage].src} 
                 alt={heroImages[activeHeroImage].alt}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
               {heroImages.map((_, i) => (
@@ -125,9 +239,13 @@ const App = () => {
       </section>
 
       {/* iOS Apps Section */}
-      <section id="ios-apps" className="py-24 px-6 bg-gray-900/30">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-16 text-center">iOS Apps</h2>
+      <section id="ios-apps" className="py-24 px-6 bg-gray-900/30 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-4xl font-bold mb-16 text-center relative group">
+            <span className="relative z-10">iOS Apps</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 via-cyan-400/20 to-blue-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+          </h2>
           
           {/* FL!P Project */}
           <div className="mb-32">
@@ -147,19 +265,19 @@ const App = () => {
 
                 <div className="flex flex-wrap gap-4 mb-8">
                   <a href="https://apps.apple.com/us/app/fl-p/id6741734983" target="_blank" rel="noopener noreferrer"
-                    className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-semibold rounded-lg transition-colors flex items-center gap-2">
+                    className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/50 group">
                     App Store
-                    <ExternalLink size={16} />
+                    <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
                   </a>
                   <a href="https://flipthephone.netlify.app/" target="_blank" rel="noopener noreferrer"
-                    className="px-4 py-3 border border-gray-600 hover:border-cyan-400 rounded-lg transition-colors flex items-center gap-2">
+                    className="px-4 py-3 border border-gray-600 hover:border-cyan-400 rounded-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 hover:bg-cyan-400/10 group">
                     Website
-                    <ExternalLink size={16} />
+                    <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
                   </a>
                   <a href="https://www.linkedin.com/company/fl-p/" target="_blank" rel="noopener noreferrer"
-                    className="px-4 py-3 border border-gray-600 hover:border-cyan-400 rounded-lg transition-colors flex items-center gap-2">
+                    className="px-4 py-3 border border-gray-600 hover:border-cyan-400 rounded-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 hover:bg-cyan-400/10 group">
                     LinkedIn
-                    <ExternalLink size={16} />
+                    <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
                   </a>
                 </div>
 
@@ -170,25 +288,26 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="aspect-[9/16] relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900">
+              <div className="relative group">
+                <div className="aspect-[9/16] relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20 animate-float">
                   <img 
                     src={flipImages[activeFlipImage].src} 
                     alt={`FL!P Screenshot ${activeFlipImage + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 <button
                   onClick={() => setActiveFlipImage((prev) => (prev - 1 + flipImages.length) % flipImages.length)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-cyan-500/20 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform duration-300" />
                 </button>
                 <button
                   onClick={() => setActiveFlipImage((prev) => (prev + 1) % flipImages.length)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-cyan-500/20 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                   {flipImages.map((_, i) => (
@@ -269,9 +388,13 @@ const App = () => {
       </section>
 
       {/* Data Science Section */}
-      <section id="data-science--analytics" className="py-24 px-6 bg-gradient-to-b from-gray-900/30 to-gray-900/50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-16 text-center">Data Science & Analytics</h2>
+      <section id="data-science--analytics" className="py-24 px-6 bg-gradient-to-b from-gray-900/30 to-gray-900/50 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-4xl font-bold mb-16 text-center relative group">
+            <span className="relative z-10">Data Science & Analytics</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 via-purple-400/20 to-pink-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+          </h2>
           
           {/* Worldwide Population Report */}
           <div className="mb-20">
@@ -288,9 +411,15 @@ const App = () => {
               <ExternalLink size={16} />
             </a>
                          <div className="grid md:grid-cols-3 gap-4">
-               <img src="https://picsum.photos/400/300?random=60" alt="Heatmap" className="rounded-lg border border-gray-800" />
-               <img src="https://picsum.photos/400/300?random=61" alt="Population Pyramid" className="rounded-lg border border-gray-800" />
-               <img src="https://picsum.photos/400/300?random=62" alt="Correlation" className="rounded-lg border border-gray-800" />
+               <div className="group hover-lift">
+                 <img src="https://picsum.photos/400/300?random=60" alt="Heatmap" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
+               </div>
+               <div className="group hover-lift" style={{ animationDelay: '0.2s' }}>
+                 <img src="https://picsum.photos/400/300?random=61" alt="Population Pyramid" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
+               </div>
+               <div className="group hover-lift" style={{ animationDelay: '0.4s' }}>
+                 <img src="https://picsum.photos/400/300?random=62" alt="Correlation" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
+               </div>
              </div>
           </div>
 
@@ -345,9 +474,13 @@ const App = () => {
       </section>
 
       {/* Creative Engineering Section */}
-      <section id="creative-engineering" className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-16 text-center">Creative Engineering</h2>
+      <section id="creative-engineering" className="py-24 px-6 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-red-500/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-4xl font-bold mb-16 text-center relative group">
+            <span className="relative z-10">Creative Engineering</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 via-red-400/20 to-yellow-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+          </h2>
           
           {/* Authentic Adventures */}
           <div className="mb-20">
@@ -505,20 +638,24 @@ const App = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 border-t border-gray-800">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">Get In Touch</h2>
+      <section id="contact" className="py-24 px-6 border-t border-gray-800 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <h2 className="text-4xl font-bold mb-8 relative group">
+            <span className="relative z-10">Get In Touch</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-blue-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+          </h2>
           <div className="flex flex-col items-center gap-4">
-            <a href="mailto:jex@jajajeev.com" className="text-2xl font-medium text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-2">
-              <Mail size={28} />
+            <a href="mailto:jex@jajajeev.com" className="text-2xl font-medium text-cyan-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-4 py-2 rounded-lg hover:bg-cyan-400/10 group">
+              <Mail size={28} className="group-hover:rotate-12 transition-transform duration-300" />
               jex@jajajeev.com
             </a>
             <div className="flex gap-6 mt-4">
-              <a href="https://www.linkedin.com/in/jex-pearce-904bb7224/" className="text-gray-400 hover:text-cyan-400 transition-colors">
-                <Linkedin size={24} />
+              <a href="https://www.linkedin.com/in/jex-pearce-904bb7224/" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 p-3 rounded-full hover:bg-cyan-400/10 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group">
+                <Linkedin size={24} className="group-hover:rotate-12 transition-transform duration-300" />
               </a>
-              <a href="https://github.com/jexpearce" className="text-gray-400 hover:text-cyan-400 transition-colors">
-                <Github size={24} />
+              <a href="https://github.com/jexpearce" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 p-3 rounded-full hover:bg-cyan-400/10 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group">
+                <Github size={24} className="group-hover:rotate-12 transition-transform duration-300" />
               </a>
             </div>
             <p className="text-gray-500 text-sm mt-8">

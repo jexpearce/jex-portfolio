@@ -136,22 +136,12 @@ const App = () => {
   }));
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden cursor-none">
-      {/* Custom Cursor */}
-      <div 
-        className="fixed w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100"
-        style={{
-          left: mousePosition.x - 8,
-          top: mousePosition.y - 8,
-          transform: 'translate(0, 0)'
-        }}
-      />
-      
-      {/* Cursor Trail */}
+    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
+      {/* Cursor Trail Only */}
       {cursorTrail.map((point, index) => {
         const age = Date.now() - point.time;
         const opacity = Math.max(0, 1 - age / 1000);
-        const scale = Math.max(0.1, 1 - age / 1000);
+        const scale = Math.max(0.2, 1 - age / 1000);
         
         return (
           <div
@@ -160,7 +150,7 @@ const App = () => {
             style={{
               left: point.x - 4,
               top: point.y - 4,
-              opacity: opacity * 0.8,
+              opacity: opacity * 0.6,
               transform: `scale(${scale})`,
               transition: 'opacity 0.1s ease-out, transform 0.1s ease-out'
             }}
@@ -216,10 +206,8 @@ const App = () => {
         
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 relative group">
-              <span className="relative z-10 bg-gradient-to-r from-white via-cyan-200 to-white bg-clip-text text-transparent animate-shimmer" style={{ backgroundSize: '200% auto' }}>
-                Jex Pearce
-              </span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white relative group">
+              <span className="relative z-10">Jex Pearce</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 via-indigo-400/30 to-orange-400/30 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-orange-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
             </h1>

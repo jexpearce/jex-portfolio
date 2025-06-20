@@ -96,14 +96,7 @@
   opacity: 1;
 }
 
-/* Custom cursor styles */
-* {
-  cursor: none !important;
-}
-
-a, button, [role="button"] {
-  cursor: none !important;
-}
+/* Remove custom cursor override - back to normal cursor */
 
 /* Enhanced text gradients */
 .enhanced-gradient {

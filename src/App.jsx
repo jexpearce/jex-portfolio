@@ -112,22 +112,22 @@ const App = () => {
   ];
 
   const flipImages = [
-    { src: 'IMG_3510.jpg', description: 'FL!P app screenshot showing main timer interface' },
-    { src: 'IMG_3267.jpg', description: 'FL!P leaderboard and competition features' },
-    { src: 'flipgang2.jpg', description: 'FL!P community and social features', isWide: true },
+    { src: 'IMG_3510.PNG', description: 'FL!P app screenshot showing main timer interface' },
+    { src: 'IMG_3267.PNG', description: 'FL!P leaderboard and competition features' },
+    { src: 'flipgang2.jpeg', description: 'FL!P community', isWide: true },
     { src: 'IMG_2962.jpg', description: 'FL!P settings and customization options' },
-    { src: 'IMG_2963.jpg', description: 'FL!P statistics and progress tracking' },
+    { src: 'IMG_2963.PNG', description: 'FL!P statistics and progress tracking' },
     { src: 'IMG_2960.jpg', description: 'FL!P notification and focus features' },
-    { src: 'IMG_3519.jpg', description: 'FL!P session management and controls' },
-    { src: 'IMG_3521.jpg', description: 'FL!P achievements and rewards system' },
-    { src: 'IMG_3512.jpg', description: 'FL!P additional features showcase' },
-    { src: 'IMG_3513.jpg', description: 'FL!P user interface details' },
-    { src: 'IMG_3514.jpg', description: 'FL!P social connectivity options' },
-    { src: 'IMG_3515.jpg', description: 'FL!P productivity insights' },
-    { src: 'IMG_3516.jpg', description: 'FL!P advanced settings panel' },
-    { src: 'IMG_3517.jpg', description: 'FL!P community engagement features' },
-    { src: 'IMG_3518.jpg', description: 'FL!P performance analytics' },
-    { src: 'IMG_3520.jpg', description: 'FL!P comprehensive feature overview' }
+    { src: 'IMG_3519.PNG', description: 'FL!P session management and controls' },
+    { src: 'IMG_3521.PNG', description: 'FL!P achievements and rewards system' },
+    { src: 'IMG_3511.PNG', description: 'FL!P additional features showcase' },
+    { src: 'IMG_3516.PNG', description: 'FL!P advanced settings panel' },
+    { src: 'IMG_3518.PNG', description: 'FL!P performance analytics' },
+    { src: 'IMG_3497.PNG', description: 'FL!P user interface details' },
+    { src: 'IMG_2970.PNG', description: 'FL!P social connectivity options' },
+    { src: 'IMG_2938.PNG', description: 'FL!P productivity insights' },
+    { src: 'IMG_3358.jpg', description: 'FL!P community engagement features' },
+    { src: 'IMG_3477 2.jpg', description: 'FL!P comprehensive feature overview' }
   ];
 
   const lociImages = Array(8).fill(null).map((_, i) => ({

@@ -95,3 +95,33 @@
 .glow-border:hover::before {
   opacity: 1;
 }
+
+/* Custom cursor styles */
+* {
+  cursor: none !important;
+}
+
+a, button, [role="button"] {
+  cursor: none !important;
+}
+
+/* Enhanced text gradients */
+.enhanced-gradient {
+  background: linear-gradient(45deg, #22d3ee, #a855f7, #f97316, #22d3ee);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Improved title effects */
+.title-glow {
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.5),
+               0 0 40px rgba(168, 85, 247, 0.3),
+               0 0 60px rgba(249, 115, 22, 0.2);
+}

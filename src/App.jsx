@@ -10,7 +10,9 @@ const App = () => {
   const [activeWaveImage, setActiveWaveImage] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorTrail, setCursorTrail] = useState([]);
   const particlesRef = useRef(null);
+  const cursorRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,12 @@ const App = () => {
     
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
+      
+      // Update cursor trail
+      setCursorTrail(prev => {
+        const newTrail = [...prev, { x: e.clientX, y: e.clientY, time: Date.now() }];
+        return newTrail.slice(-15); // Keep only last 15 positions
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -81,6 +89,18 @@ const App = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Cursor trail cleanup
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCursorTrail(prev => {
+        const now = Date.now();
+        return prev.filter(point => now - point.time < 1000);
+      });
+    }, 50);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -116,43 +136,43 @@ const App = () => {
   }));
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden cursor-none">
+      {/* Custom Cursor */}
+      <div 
+        className="fixed w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100"
+        style={{
+          left: mousePosition.x - 8,
+          top: mousePosition.y - 8,
+          transform: 'translate(0, 0)'
+        }}
+      />
+      
+      {/* Cursor Trail */}
+      {cursorTrail.map((point, index) => {
+        const age = Date.now() - point.time;
+        const opacity = Math.max(0, 1 - age / 1000);
+        const scale = Math.max(0.1, 1 - age / 1000);
+        
+        return (
+          <div
+            key={`${point.x}-${point.y}-${point.time}`}
+            className="fixed w-2 h-2 bg-cyan-400 rounded-full pointer-events-none z-[9998] mix-blend-screen"
+            style={{
+              left: point.x - 4,
+              top: point.y - 4,
+              opacity: opacity * 0.8,
+              transform: `scale(${scale})`,
+              transition: 'opacity 0.1s ease-out, transform 0.1s ease-out'
+            }}
+          />
+        );
+      })}
+      
       {/* Animated Background Canvas */}
       <canvas 
         ref={particlesRef}
         className="fixed inset-0 pointer-events-none z-0 opacity-30"
       />
-      
-      {/* Animated Diagonal Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div 
-          className="absolute w-1 bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent transform rotate-45 transition-all duration-1000"
-          style={{
-            height: '200vh',
-            left: `${mousePosition.x * 0.01}%`,
-            top: '-50vh',
-            animationDelay: '0s'
-          }}
-        />
-        <div 
-          className="absolute w-1 bg-gradient-to-b from-transparent via-indigo-500/15 to-transparent transform -rotate-45 transition-all duration-1000"
-          style={{
-            height: '200vh',
-            right: `${mousePosition.x * 0.01}%`,
-            top: '-50vh',
-            animationDelay: '0.5s'
-          }}
-        />
-        <div 
-          className="absolute w-0.5 bg-gradient-to-b from-transparent via-orange-500/10 to-transparent transform rotate-12 transition-all duration-1000"
-          style={{
-            height: '200vh',
-            left: `${50 + mousePosition.x * 0.005}%`,
-            top: '-50vh',
-            animationDelay: '1s'
-          }}
-        />
-      </div>
 
       {/* Geometric Pattern Overlay */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-5">
@@ -185,11 +205,23 @@ const App = () => {
       {/* Hero Section */}
       <section id="about" className="min-h-screen flex items-center px-6 pt-20 relative z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-indigo-500/5 pointer-events-none"></div>
+        
+        {/* Static Diagonal Elements - Hero Only */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute w-1 bg-gradient-to-b from-transparent via-cyan-500/25 to-transparent transform rotate-45 animate-pulse-glow" style={{ height: '150vh', left: '15%', top: '-25vh' }} />
+          <div className="absolute w-1 bg-gradient-to-b from-transparent via-indigo-500/20 to-transparent transform -rotate-45 animate-pulse-glow" style={{ height: '150vh', right: '20%', top: '-25vh', animationDelay: '1s' }} />
+          <div className="absolute w-0.5 bg-gradient-to-b from-transparent via-orange-500/15 to-transparent transform rotate-12 animate-pulse-glow" style={{ height: '150vh', left: '65%', top: '-25vh', animationDelay: '2s' }} />
+          <div className="absolute w-0.5 bg-gradient-to-b from-transparent via-purple-500/15 to-transparent transform -rotate-12 animate-pulse-glow" style={{ height: '150vh', left: '35%', top: '-25vh', animationDelay: '3s' }} />
+        </div>
+        
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white relative group">
-              <span className="relative z-10">Jex Pearce</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-indigo-400/20 to-orange-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 relative group">
+              <span className="relative z-10 bg-gradient-to-r from-white via-cyan-200 to-white bg-clip-text text-transparent animate-shimmer" style={{ backgroundSize: '200% auto' }}>
+                Jex Pearce
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 via-indigo-400/30 to-orange-400/30 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-orange-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
             </h1>
             <p className="text-xl text-gray-400 mb-8 leading-relaxed">
               Durham mathematics graduate crafting elegant iOS experiences. Built FL!P for the App Store, developing Loci in beta. Also passionate about data science and creative engineering.
@@ -243,15 +275,23 @@ const App = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl font-bold mb-16 text-center relative group">
-            <span className="relative z-10">iOS Apps</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 via-cyan-400/20 to-blue-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <span className="relative z-10 bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent font-extrabold tracking-wide">
+              iOS Apps
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/30 via-cyan-400/30 to-blue-400/30 -skew-y-1 scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-purple-500/10 via-cyan-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-md"></div>
           </h2>
           
           {/* FL!P Project */}
           <div className="mb-32">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-4 text-cyan-400">FL!P</h3>
+                <h3 className="text-3xl font-bold mb-4 relative group">
+                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent font-extrabold tracking-wider">
+                    FL!P
+                  </span>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+                </h3>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   Tired of notifications stealing your focus? FL!P is a productivity app that uses motion tracking to ensure your phone stays face down. Start a timer, flip your phone, and lock in. Compete on location-based leaderboards, build streaks, and join friends' sessions. Perfect for anyone ready to reclaim their attention.
                 </p>
@@ -327,7 +367,12 @@ const App = () => {
           {/* Loci Project */}
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h3 className="text-3xl font-bold mb-4 text-cyan-400">Loci</h3>
+                              <h3 className="text-3xl font-bold mb-4 relative group">
+                  <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-extrabold tracking-wider">
+                    Loci
+                  </span>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-blue-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+                </h3>
               <p className="text-gray-300 mb-6 leading-relaxed">
                 Discover what people around you are actually listening to right now. Loci creates real-time music maps, building by building, city by city. Match with others who share your taste and compete on location-based music leaderboards. Currently in closed TestFlight beta.
               </p>
@@ -392,8 +437,11 @@ const App = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl font-bold mb-16 text-center relative group">
-            <span className="relative z-10">Data Science & Analytics</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 via-purple-400/20 to-pink-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <span className="relative z-10 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-extrabold tracking-wide">
+              Data Science & Analytics
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/30 via-purple-400/30 to-pink-400/30 -skew-y-1 scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-md"></div>
           </h2>
           
           {/* Worldwide Population Report */}
@@ -478,15 +526,23 @@ const App = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-red-500/5 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl font-bold mb-16 text-center relative group">
-            <span className="relative z-10">Creative Engineering</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 via-red-400/20 to-yellow-400/20 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <span className="relative z-10 bg-gradient-to-r from-orange-400 via-red-400 to-yellow-400 bg-clip-text text-transparent font-extrabold tracking-wide">
+              Creative Engineering
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-400/30 via-red-400/30 to-yellow-400/30 -skew-y-1 scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-orange-500/10 via-red-500/10 to-yellow-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-md"></div>
           </h2>
           
           {/* Authentic Adventures */}
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-4 text-orange-400">Authentic Adventures</h3>
+                <h3 className="text-3xl font-bold mb-4 relative group">
+                  <span className="bg-gradient-to-r from-orange-400 via-red-400 to-yellow-400 bg-clip-text text-transparent font-extrabold tracking-wider">
+                    Authentic Adventures
+                  </span>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 via-red-400/20 to-yellow-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+                </h3>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   Created a website that uses Reddit's API & OpenAI to generate authentic travel summaries based on real advice from location-specific subreddits. Built to cut through sponsored content and surface genuine travel tips from real people, covering itineraries, food & nightlife, and budget advice.
                 </p>

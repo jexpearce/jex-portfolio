@@ -111,10 +111,24 @@ const App = () => {
     { src: 'https://picsum.photos/600/800?random=3', alt: 'Jex Portrait 3' }
   ];
 
-  const flipImages = Array(8).fill(null).map((_, i) => ({
-    src: `https://picsum.photos/400/600?random=${10 + i}`,
-    description: `Placeholder description for image ${i + 1}`
-  }));
+  const flipImages = [
+    { src: 'IMG_3510.jpg', description: 'FL!P app screenshot showing main timer interface' },
+    { src: 'IMG_3267.jpg', description: 'FL!P leaderboard and competition features' },
+    { src: 'flipgang2.jpg', description: 'FL!P community and social features', isWide: true },
+    { src: 'IMG_2962.jpg', description: 'FL!P settings and customization options' },
+    { src: 'IMG_2963.jpg', description: 'FL!P statistics and progress tracking' },
+    { src: 'IMG_2960.jpg', description: 'FL!P notification and focus features' },
+    { src: 'IMG_3519.jpg', description: 'FL!P session management and controls' },
+    { src: 'IMG_3521.jpg', description: 'FL!P achievements and rewards system' },
+    { src: 'IMG_3512.jpg', description: 'FL!P additional features showcase' },
+    { src: 'IMG_3513.jpg', description: 'FL!P user interface details' },
+    { src: 'IMG_3514.jpg', description: 'FL!P social connectivity options' },
+    { src: 'IMG_3515.jpg', description: 'FL!P productivity insights' },
+    { src: 'IMG_3516.jpg', description: 'FL!P advanced settings panel' },
+    { src: 'IMG_3517.jpg', description: 'FL!P community engagement features' },
+    { src: 'IMG_3518.jpg', description: 'FL!P performance analytics' },
+    { src: 'IMG_3520.jpg', description: 'FL!P comprehensive feature overview' }
+  ];
 
   const lociImages = Array(8).fill(null).map((_, i) => ({
     src: `https://picsum.photos/400/600?random=${20 + i}`,
@@ -131,9 +145,7 @@ const App = () => {
     type: 'image'
   }));
 
-  const waveImages = Array(4).fill(null).map((_, i) => ({
-    src: `https://picsum.photos/400/300?random=${50 + i}`
-  }));
+
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
@@ -274,12 +286,14 @@ const App = () => {
           <div className="mb-32">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-4 relative group">
-                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent font-extrabold tracking-wider">
-                    FL!P
-                  </span>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
-                </h3>
+                <a href="https://apps.apple.com/us/app/fl-p/id6741734983" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-3xl font-bold mb-4 relative group cursor-pointer">
+                    <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent font-extrabold tracking-wider">
+                      FL!P
+                    </span>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+                  </h3>
+                </a>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   Tired of notifications stealing your focus? FL!P is a productivity app that uses motion tracking to ensure your phone stays face down. Start a timer, flip your phone, and lock in. Compete on location-based leaderboards, build streaks, and join friends' sessions. Perfect for anyone ready to reclaim their attention.
                 </p>
@@ -317,7 +331,7 @@ const App = () => {
               </div>
 
               <div className="relative group">
-                <div className="aspect-[9/16] relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20 animate-float">
+                <div className={`${flipImages[activeFlipImage].isWide ? 'aspect-video' : 'aspect-[9/16]'} relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20 animate-float`}>
                   <img 
                     src={flipImages[activeFlipImage].src} 
                     alt={`FL!P Screenshot ${activeFlipImage + 1}`}
@@ -355,12 +369,14 @@ const App = () => {
           {/* Loci Project */}
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-                              <h3 className="text-3xl font-bold mb-4 relative group">
-                  <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-extrabold tracking-wider">
-                    Loci
-                  </span>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-blue-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
-                </h3>
+                                              <a href="https://locii.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-3xl font-bold mb-4 relative group cursor-pointer">
+                    <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-extrabold tracking-wider">
+                      Loci
+                    </span>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-blue-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+                  </h3>
+                </a>
               <p className="text-gray-300 mb-6 leading-relaxed">
                 Discover what people around you are actually listening to right now. Loci creates real-time music maps, building by building, city by city. Match with others who share your taste and compete on location-based music leaderboards. Currently in closed TestFlight beta.
               </p>
@@ -434,10 +450,12 @@ const App = () => {
           
           {/* Worldwide Population Report */}
           <div className="mb-20">
-            <h3 className="text-3xl font-bold mb-4 text-indigo-400">
-              <Globe className="inline mr-2" size={32} />
-              Worldwide Population Report
-            </h3>
+            <a href="world_study/" target="_blank" rel="noopener noreferrer">
+              <h3 className="text-3xl font-bold mb-4 text-indigo-400 cursor-pointer hover:text-indigo-300 transition-colors group">
+                <Globe className="inline mr-2 group-hover:rotate-12 transition-transform duration-300" size={32} />
+                Worldwide Population Report
+              </h3>
+            </a>
             <p className="text-gray-300 mb-8 max-w-3xl">
               An extensive analysis of key demographic trends worldwide. Includes Population Pyramids, Heatmaps, and Scatterplots, allowing each reader to gain crucial insights into modern populations, such as Japan's aging citizens, male-to-female ratios in countries like India, and Africa's booming birth rate.
             </p>
@@ -448,13 +466,13 @@ const App = () => {
             </a>
                          <div className="grid md:grid-cols-3 gap-4">
                <div className="group hover-lift">
-                 <img src="https://picsum.photos/400/300?random=60" alt="Heatmap" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
+                 <img src="heatmap copy.png" alt="Heatmap" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
                </div>
                <div className="group hover-lift" style={{ animationDelay: '0.2s' }}>
-                 <img src="https://picsum.photos/400/300?random=61" alt="Population Pyramid" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
+                 <img src="pyramid copy.png" alt="Population Pyramid" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
                </div>
                <div className="group hover-lift" style={{ animationDelay: '0.4s' }}>
-                 <img src="https://picsum.photos/400/300?random=62" alt="Correlation" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
+                 <img src="correlation copy.png" alt="Correlation" className="rounded-lg border border-gray-800 group-hover:border-indigo-400/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-400/20" />
                </div>
              </div>
           </div>
@@ -463,7 +481,9 @@ const App = () => {
           <div className="space-y-12">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold mb-3 text-indigo-400">Market Report for Super Yachts</h3>
+                <a href="Superyacht%20insights%20(1).pdf" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-2xl font-bold mb-3 text-indigo-400 cursor-pointer hover:text-indigo-300 transition-colors">Market Report for Super Yachts</h3>
+                </a>
                 <p className="text-gray-300 mb-4">
                   A Python-driven analysis report on Super Yachts utilizing Web Scraping and SQL for data gathering, then Python for advanced visualization.
                 </p>
@@ -473,12 +493,14 @@ const App = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-                             <img src="https://picsum.photos/600/400?random=63" alt="Super Yacht Analysis" className="rounded-lg border border-gray-800" />
+                             <img src="lurssen v others (14-24) copy.png" alt="Super Yacht Analysis" className="rounded-lg border border-gray-800" />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold mb-3 text-indigo-400">Analysis of 5G Availability</h3>
+                <a href="5G Availability Report.pdf" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-2xl font-bold mb-3 text-indigo-400 cursor-pointer hover:text-indigo-300 transition-colors">Analysis of 5G Availability</h3>
+                </a>
                 <p className="text-gray-300 mb-4">
                   A visual analysis showcasing global 5G network availability, highlighting key cities, operators, and future trends.
                 </p>
@@ -488,12 +510,14 @@ const App = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-                             <img src="https://picsum.photos/600/400?random=64" alt="5G Analysis" className="rounded-lg border border-gray-800" />
+                             <img src="5Gcities copy.png" alt="5G Analysis" className="rounded-lg border border-gray-800" />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold mb-3 text-indigo-400">Predicting Housing Prices with Machine Learning</h3>
+                <a href="siliconvalleyhousing2.html" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-2xl font-bold mb-3 text-indigo-400 cursor-pointer hover:text-indigo-300 transition-colors">Predicting Housing Prices with Machine Learning</h3>
+                </a>
                 <p className="text-gray-300 mb-4">
                   Created a machine learning algorithm that can determine the price of a new house given its area, bedrooms, bathrooms, etc, by analyzing the prior houses given in the data.
                 </p>
@@ -503,7 +527,7 @@ const App = () => {
                   <ExternalLink size={16} />
                 </a>
               </div>
-                             <img src="https://picsum.photos/600/400?random=65" alt="Housing Price Prediction" className="rounded-lg border border-gray-800" />
+                             <img src="houseprices copy.png" alt="Housing Price Prediction" className="rounded-lg border border-gray-800" />
             </div>
           </div>
         </div>
@@ -525,12 +549,14 @@ const App = () => {
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-4 relative group">
-                  <span className="bg-gradient-to-r from-orange-400 via-red-400 to-yellow-400 bg-clip-text text-transparent font-extrabold tracking-wider">
-                    Authentic Adventures
-                  </span>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 via-red-400/20 to-yellow-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
-                </h3>
+                <a href="https://authenticadventures.onrender.com/" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-3xl font-bold mb-4 relative group cursor-pointer">
+                    <span className="bg-gradient-to-r from-orange-400 via-red-400 to-yellow-400 bg-clip-text text-transparent font-extrabold tracking-wider">
+                      Authentic Adventures
+                    </span>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 via-red-400/20 to-yellow-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+                  </h3>
+                </a>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   Created a website that uses Reddit's API & OpenAI to generate authentic travel summaries based on real advice from location-specific subreddits. Built to cut through sponsored content and surface genuine travel tips from real people, covering itineraries, food & nightlife, and budget advice.
                 </p>
@@ -572,7 +598,7 @@ const App = () => {
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-4 text-orange-400">Mathematics Dissertation</h3>
+                <h3 className="text-3xl font-bold mb-4 text-orange-400 cursor-pointer hover:text-orange-300 transition-colors">Mathematics Dissertation</h3>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   Durham University final year project modeling cardiac spiral waves using the FitzHugh-Nagumo framework. Built Python simulations with NumPy and Matplotlib to bridge mathematical modeling with biological systems, incorporating stochastic elements to represent natural cardiac variability. Developed using Jupyter notebooks and collaborative tools.
                 </p>
@@ -621,7 +647,9 @@ const App = () => {
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold mb-3 text-orange-400">Creating and Analyzing Wave Propagations</h3>
+                <a href="Wavepropagation.html" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-2xl font-bold mb-3 text-orange-400 cursor-pointer hover:text-orange-300 transition-colors">Creating and Analyzing Wave Propagations</h3>
+                </a>
                 <p className="text-gray-300 mb-4">
                   Used VPython to simulate mathematical models of sinusoidal waves using the numerical Central Differences method, explained with LaTeX. This work inspired another developer to create their own wave simulation.
                 </p>
@@ -639,14 +667,16 @@ const App = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2">
-                {waveImages.map((img, i) => (
-                  <img 
-                    key={i}
-                    src={img.src} 
-                    alt={`Wave Model ${i + 1}`}
-                    className="rounded-lg border border-gray-800"
-                  />
-                ))}
+                <img 
+                  src="model copy.png" 
+                  alt="Wave Model 1"
+                  className="rounded-lg border border-gray-800"
+                />
+                <img 
+                  src="wsvemodelpic copy.png" 
+                  alt="Wave Model 2"
+                  className="rounded-lg border border-gray-800"
+                />
               </div>
             </div>
           </div>

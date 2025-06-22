@@ -330,12 +330,12 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="relative group">
-                <div className={`${flipImages[activeFlipImage].isWide ? 'aspect-video' : 'aspect-[9/16]'} relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20 animate-float`}>
+              <div className="relative group max-w-sm mx-auto">
+                <div className={`${flipImages[activeFlipImage].isWide ? 'aspect-video' : 'aspect-[3/4]'} relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20`}>
                   <img 
                     src={flipImages[activeFlipImage].src} 
                     alt={`FL!P Screenshot ${activeFlipImage + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>

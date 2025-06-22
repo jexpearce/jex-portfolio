@@ -224,7 +224,7 @@ const App = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="min-h-screen flex items-center px-6 pt-20 relative z-10">
+      <section id="about" className="py-16 md:py-24 px-6 pt-20 relative z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-indigo-500/5 pointer-events-none"></div>
         
         {/* Static Diagonal Elements - Hero Only */}
@@ -235,36 +235,36 @@ const App = () => {
           <div className="absolute w-0.5 bg-gradient-to-b from-transparent via-purple-500/15 to-transparent transform -rotate-12 animate-pulse-glow" style={{ height: '150vh', left: '35%', top: '-25vh', animationDelay: '3s' }} />
         </div>
         
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
           <div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white relative group">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white relative group">
               <span className="relative z-10">Jex Pearce</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 via-indigo-400/30 to-orange-400/30 -skew-y-1 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-orange-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
             </h1>
-            <p className="text-xl text-gray-400 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-8 leading-relaxed">
               Durham mathematics graduate creating unique iOS experiences. Built FL!P for the App Store, developing Loci in beta. Incredibly passionate about data science and experienced in data analytics.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
               <a href="https://www.durham.ac.uk/" target="_blank" rel="noopener noreferrer" 
-                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group">
-                <GraduationCap size={20} className="group-hover:rotate-12 transition-transform duration-300" />
+                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group text-sm sm:text-base">
+                <GraduationCap size={18} className="group-hover:rotate-12 transition-transform duration-300" />
                 Durham University, UK
               </a>
               <a href="https://www.linkedin.com/in/jex-pearce-904bb7224/" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group">
-                <Linkedin size={20} className="group-hover:rotate-12 transition-transform duration-300" />
+                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group text-sm sm:text-base">
+                <Linkedin size={18} className="group-hover:rotate-12 transition-transform duration-300" />
                 LinkedIn
               </a>
               <a href="https://github.com/jexpearce" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group">
-                <Github size={20} className="group-hover:rotate-12 transition-transform duration-300" />
+                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group text-sm sm:text-base">
+                <Github size={18} className="group-hover:rotate-12 transition-transform duration-300" />
                 GitHub
               </a>
             </div>
           </div>
           
-          <div className="relative group">
+          <div className="relative group max-w-xs md:max-w-sm mx-auto lg:mx-0">
             <div className="aspect-[3/4] relative overflow-hidden rounded-2xl border border-gray-800 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20">
               <img 
                 src={heroImages[activeHeroImage].src} 
@@ -274,13 +274,29 @@ const App = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/50 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
+            
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => setActiveHeroImage((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-cyan-500/20 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group"
+            >
+              <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-300" />
+            </button>
+            <button
+              onClick={() => setActiveHeroImage((prev) => (prev + 1) % heroImages.length)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-cyan-500/20 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group"
+            >
+              <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+
+            {/* Dot Indicators */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
               {heroImages.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveHeroImage(i)}
                   className={`w-2 h-2 rounded-full transition-all ${
-                    i === activeHeroImage ? 'bg-cyan-400 w-8' : 'bg-gray-600'
+                    i === activeHeroImage ? 'bg-cyan-400 w-6' : 'bg-gray-600'
                   }`}
                 />
               ))}

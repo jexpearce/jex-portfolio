@@ -130,15 +130,22 @@ const App = () => {
     { src: 'IMG_3477 2.jpg', description: 'FL!P comprehensive feature overview' }
   ];
 
-  const lociImages = Array(8).fill(null).map((_, i) => ({
-    src: `https://picsum.photos/400/600?random=${20 + i}`,
-    description: `Placeholder description for image ${i + 1}`
-  }));
+  const lociImages = [
+    { src: 'loci1.PNG', description: 'Main screen for quick import of recently played Spotify tracks to your building or region via Spotify API' },
+    { src: 'loci2.PNG', description: 'Leaderboards showing top artists, genres, and total listening time for regions and buildings' },
+    { src: 'loci3.PNG', description: 'Advanced interface for importing specific playlists or songs from certain time periods' },
+    { src: 'loci4.PNG', description: 'Your main profile showing top artists, visible to friends and leaderboard users based on privacy settings' },
+    { src: 'loci5.PNG', description: 'Match feature connecting you with others in your region based on similar music tastes via geocoding' },
+    { src: 'loci6.PNG', description: 'Session and import history tracking your music listening activity' },
+    { src: 'loci7.PNG', description: 'Advanced "Strava-style" music map feature for tracking songs during runs or drives, connecting locations with music' },
+    { src: 'loci8.PNG', description: 'Privacy settings for controlling where you import songs - regional or building-specific geolocation options' }
+  ];
 
-  const adventuresImages = Array(3).fill(null).map((_, i) => ({
-    src: `https://picsum.photos/800/600?random=${30 + i}`,
-    description: `Short description ${i + 1}`
-  }));
+  const adventuresImages = [
+    { src: 'authenticadventures1.png', description: 'Top travel tips from web-scraped Reddit posts specific to each city via Reddit API' },
+    { src: 'authenticadventures2.png', description: 'Food and nightlife recommendations sourced from authentic user experiences' },
+    { src: 'authenticadventures3.png', description: 'AI-generated summary creating authentic itineraries from real Reddit user experiences, no external sponsorship' }
+  ];
 
   const dissertationMedia = Array(8).fill(null).map((_, i) => ({
     src: `https://picsum.photos/800/600?random=${40 + i}`,
@@ -400,25 +407,26 @@ const App = () => {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="aspect-[9/16] relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900">
+            <div className="relative group max-w-sm mx-auto">
+              <div className="aspect-[3/4] relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 transition-all duration-500 group-hover:border-cyan-400/50 group-hover:shadow-2xl group-hover:shadow-cyan-400/20">
                 <img 
                   src={lociImages[activeLociImage].src} 
                   alt={`Loci Screenshot ${activeLociImage + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               <button
                 onClick={() => setActiveLociImage((prev) => (prev - 1 + lociImages.length) % lociImages.length)}
-                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
+                className="absolute left-2 top-1/2 -translate-y-1/2 p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-cyan-500/20 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform duration-300" />
               </button>
               <button
                 onClick={() => setActiveLociImage((prev) => (prev + 1) % lociImages.length)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-cyan-500/20 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/20 group"
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
               </button>
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                 {lociImages.map((_, i) => (
@@ -577,15 +585,15 @@ const App = () => {
                 </div>
                 <button
                   onClick={() => setActiveAdventuresImage((prev) => (prev - 1 + adventuresImages.length) % adventuresImages.length)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-orange-500/20 border border-gray-700/50 hover:border-orange-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-orange-400/20 group"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform duration-300" />
                 </button>
                 <button
                   onClick={() => setActiveAdventuresImage((prev) => (prev + 1) % adventuresImages.length)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-orange-500/20 border border-gray-700/50 hover:border-orange-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-orange-400/20 group"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
                 <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-gray-300 bg-gray-900/80 px-3 py-1 rounded">
                   {adventuresImages[activeAdventuresImage].description}

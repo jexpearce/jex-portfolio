@@ -341,7 +341,7 @@ const App = () => {
                   <a href="https://www.palatinate.org.uk/durham-student-start-up-launches-productivity-app/" target="_blank" rel="noopener noreferrer"
                     className="block mb-2 group">
                     <p className="text-base font-semibold text-cyan-400 hover:text-cyan-300 transition-colors group-hover:underline">
-                      🎉 Featured in Palatinate News • June 19th, 2025
+                      Featured in Palatinate News • June 19th, 2025
                     </p>
                   </a>
                   <p className="text-sm text-gray-400">

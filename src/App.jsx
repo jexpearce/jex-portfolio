@@ -101,6 +101,21 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Preload images for better performance
+  useEffect(() => {
+    const preloadImages = (imageArray) => {
+      imageArray.forEach(imageObj => {
+        const img = new Image();
+        img.src = imageObj.src;
+      });
+    };
+    
+    // Preload FL!P and Loci images
+    preloadImages(flipImages);
+    preloadImages(lociImages);
+    preloadImages(adventuresImages);
+  }, []);
+
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -112,33 +127,33 @@ const App = () => {
   ];
 
   const flipImages = [
-    { src: 'IMG_3510.PNG', description: 'FL!P app screenshot showing main timer interface' },
-    { src: 'IMG_3267.PNG', description: 'FL!P leaderboard and competition features' },
-    { src: 'flipgang2.jpeg', description: 'FL!P community', isWide: true },
-    { src: 'IMG_2962.jpg', description: 'FL!P settings and customization options' },
-    { src: 'IMG_2963.PNG', description: 'FL!P statistics and progress tracking' },
-    { src: 'IMG_2960.jpg', description: 'FL!P notification and focus features' },
-    { src: 'IMG_3519.PNG', description: 'FL!P session management and controls' },
-    { src: 'IMG_3521.PNG', description: 'FL!P achievements and rewards system' },
-    { src: 'IMG_3511.PNG', description: 'FL!P additional features showcase' },
-    { src: 'IMG_3516.PNG', description: 'FL!P advanced settings panel' },
-    { src: 'IMG_3518.PNG', description: 'FL!P performance analytics' },
-    { src: 'IMG_3497.PNG', description: 'FL!P user interface details' },
-    { src: 'IMG_2970.PNG', description: 'FL!P social connectivity options' },
-    { src: 'IMG_2938.PNG', description: 'FL!P productivity insights' },
-    { src: 'IMG_3358.jpg', description: 'FL!P community engagement features' },
-    { src: 'IMG_3477 2.jpg', description: 'FL!P comprehensive feature overview' }
+    { src: 'IMG_3510.jpg', description: 'FL!P app screenshot showing main home page with the timer interface' },
+    { src: 'IMG_3267.jpg', description: 'Get ready!, this is the countdown after starting for your window of time to flip the phone!' },
+    { src: 'flipgang2.jpeg', description: 'Jex pearce, Founder and Technical Founder, and Ben Arkus, Luke Nelmes, cofounders, the FL!P team!', isWide: true },
+    { src: 'IMG_2962.jpg', description: 'Phone faced down' },
+    { src: 'IMG_2963.jpg', description: 'Session Complete!' },
+    { src: 'IMG_2960.jpg', description: 'FL!P notification and widget features, allowing you to effortlessly pause and resume the app from the lock screen via iOSs Live Activity, Dynamic Island, and Widgetkit' },
+    { src: 'IMG_3519.jpg', description: 'Motion tracking detected that the phones not flipped down! Either pause, flip back, or cancel the session' },
+    { src: 'IMG_3521.jpg', description: 'Session Failed!' },
+    { src: 'IMG_3511.jpg', description: 'FL!P ranking system, emphasizing the other unique component of the app: the gamification of productivity' },
+    { src: 'IMG_3516.jpg', description: 'FL!P advanced university selection panel. Join friends and meet new flippers in your school! A large part of FL!P is student focused productivity.' },
+    { src: 'IMG_3518.jpg', description: 'FL!P pause screen interface' },
+    { src: 'IMG_3497.jpg', description: 'FL!P company selection interface details' },
+    { src: 'IMG_2970.jpg', description: 'The global weekly leaderboard. Data is automatically deleted at the start of each week, ensuring that your privacy is put first, and that those Firebase storage fees dont bankrupt my poor bank account.' },
+    { src: 'IMG_2938.jpg', description: 'The building specific leaderboards. Automatically selected (with prior given consent, with location data never stored), and utilizes an advanced, sophisticated reverse geocoding method to identify the best building near you that is accurately chosen based off of key words in the building name (e.g "library", "coffee shop", "coworking", "office") and prior number of sessions conducted by other users in that building. Uses the apple maps API.' },
+    { src: 'IMG_3358.jpg', description: 'The university leaderboards, allowing you to live join a session of a user that is currently at your school! A great way to meet new people and make new friends.' },
+    { src: 'IMG_3477 2.jpg', description: 'FL!P home page, with the pause features dynamically tucked away.' }
   ];
 
   const lociImages = [
-    { src: 'loci1.PNG', description: 'Main screen for quick import of recently played Spotify tracks to your building or region via Spotify API' },
-    { src: 'loci2.PNG', description: 'Leaderboards showing top artists, genres, and total listening time for regions and buildings' },
-    { src: 'loci3.PNG', description: 'Advanced interface for importing specific playlists or songs from certain time periods' },
-    { src: 'loci4.PNG', description: 'Your main profile showing top artists, visible to friends and leaderboard users based on privacy settings' },
-    { src: 'loci5.PNG', description: 'Match feature connecting you with others in your region based on similar music tastes via geocoding' },
-    { src: 'loci6.PNG', description: 'Session and import history tracking your music listening activity' },
-    { src: 'loci7.PNG', description: 'Advanced "Strava-style" music map feature for tracking songs during runs or drives, connecting locations with music' },
-    { src: 'loci8.PNG', description: 'Privacy settings for controlling where you import songs - regional or building-specific geolocation options' }
+    { src: 'loci1.jpg', description: 'Main screen for quick import of recently played Spotify tracks to your building or region via Spotify API' },
+    { src: 'loci2.jpg', description: 'Leaderboards showing top artists, genres, and total listening time for regions and buildings' },
+    { src: 'loci3.jpg', description: 'Advanced interface for importing specific playlists or songs from certain time periods' },
+    { src: 'loci4.jpg', description: 'Your main profile showing top artists, visible to friends and leaderboard users based on privacy settings' },
+    { src: 'loci5.jpg', description: 'Match feature connecting you with others in your region based on similar music tastes via geocoding' },
+    { src: 'loci6.jpg', description: 'Session and import history tracking your music listening activity' },
+    { src: 'loci7.jpg', description: 'Advanced "Strava-style" music map feature for tracking songs during runs or drives, connecting locations with music' },
+    { src: 'loci8.jpg', description: 'Privacy settings for controlling where you import songs - regional or building-specific geolocation options' }
   ];
 
   const adventuresImages = [

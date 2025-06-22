@@ -110,7 +110,8 @@ const App = () => {
       });
     };
     
-    // Preload FL!P and Loci images
+    // Preload all images for better performance
+    preloadImages(heroImages);
     preloadImages(flipImages);
     preloadImages(lociImages);
     preloadImages(adventuresImages);
@@ -123,7 +124,7 @@ const App = () => {
   const heroImages = [
     { src: 'me1.jpeg', alt: 'Jex Portrait 1' },
     { src: 'me2.jpeg', alt: 'Jex Portrait 2' },
-    { src: 'me3.JPG', alt: 'Jex Portrait 3' }
+    { src: 'me3.jpeg', alt: 'Jex Portrait 3' }
   ];
 
   const flipImages = [
@@ -204,21 +205,23 @@ const App = () => {
       </div>
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-gray-950/95 backdrop-blur-md border-b border-gray-800' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-center space-x-8">
-            {['About', 'iOS Apps', 'Data Science & Analytics', 'Creative Engineering', 'Contact'].map((item, index) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase().replace(/[&\s]/g, '-'))}
-                className="text-sm font-medium text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-3 py-2 rounded-lg hover:bg-cyan-400/10 group"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <span className="relative">
-                  {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </span>
-              </button>
-            ))}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex justify-center">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+              {['About', 'iOS Apps', 'Data Science & Analytics', 'Creative Engineering', 'Contact'].map((item, index) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase().replace(/[&\s]/g, '-'))}
+                  className="text-xs sm:text-sm font-medium text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 px-2 sm:px-3 py-2 rounded-lg hover:bg-cyan-400/10 group whitespace-nowrap"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <span className="relative">
+                    {item}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </nav>
@@ -269,7 +272,8 @@ const App = () => {
               <img 
                 src={heroImages[activeHeroImage].src} 
                 alt={heroImages[activeHeroImage].alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/50 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

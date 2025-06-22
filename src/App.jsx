@@ -6,7 +6,7 @@ const App = () => {
   const [activeFlipImage, setActiveFlipImage] = useState(0);
   const [activeLociImage, setActiveLociImage] = useState(0);
   const [activeAdventuresImage, setActiveAdventuresImage] = useState(0);
-  const [activeDissertationMedia, setActiveDissertationMedia] = useState(0);
+
   const [activeWaveImage, setActiveWaveImage] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -25,7 +25,7 @@ const App = () => {
       // Update cursor trail
       setCursorTrail(prev => {
         const newTrail = [...prev, { x: e.clientX, y: e.clientY, time: Date.now() }];
-        return newTrail.slice(-15); // Keep only last 15 positions
+        return newTrail.slice(-2); // Keep only last 2 positions for subtle effect
       });
     };
 
@@ -94,7 +94,7 @@ const App = () => {
     const interval = setInterval(() => {
       setCursorTrail(prev => {
         const now = Date.now();
-        return prev.filter(point => now - point.time < 1000);
+        return prev.filter(point => now - point.time < 300); // Shorter trail duration
       });
     }, 50);
     
@@ -121,9 +121,9 @@ const App = () => {
   };
 
   const heroImages = [
-    { src: 'https://picsum.photos/600/800?random=1', alt: 'Jex Portrait 1' },
-    { src: 'https://picsum.photos/600/800?random=2', alt: 'Jex Portrait 2' },
-    { src: 'https://picsum.photos/600/800?random=3', alt: 'Jex Portrait 3' }
+    { src: 'me1.jpeg', alt: 'Jex Portrait 1' },
+    { src: 'me2.jpeg', alt: 'Jex Portrait 2' },
+    { src: 'me3.JPG', alt: 'Jex Portrait 3' }
   ];
 
   const flipImages = [
@@ -162,10 +162,7 @@ const App = () => {
     { src: 'authenticadventures3.png', description: 'AI-generated summary creating authentic itineraries from real Reddit user experiences, no external sponsorship' }
   ];
 
-  const dissertationMedia = Array(8).fill(null).map((_, i) => ({
-    src: `https://picsum.photos/800/600?random=${40 + i}`,
-    type: 'image'
-  }));
+
 
 
 
@@ -246,7 +243,7 @@ const App = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-orange-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
             </h1>
             <p className="text-xl text-gray-400 mb-8 leading-relaxed">
-              Durham mathematics graduate crafting elegant iOS experiences. Built FL!P for the App Store, developing Loci in beta. Also passionate about data science and creative engineering.
+              Durham mathematics graduate creating unique iOS experiences. Built FL!P for the App Store, developing Loci in beta. Incredibly passionate about data science and experienced in data analytics.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://www.durham.ac.uk/" target="_blank" rel="noopener noreferrer" 
@@ -621,47 +618,33 @@ const App = () => {
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-4 text-orange-400 cursor-pointer hover:text-orange-300 transition-colors">Mathematics Dissertation</h3>
+                <a href="Jex_Pearce_Final_Project_III (8).pdf" target="_blank" rel="noopener noreferrer">
+                  <h3 className="text-3xl font-bold mb-4 text-orange-400 cursor-pointer hover:text-orange-300 transition-colors">Mathematics Dissertation</h3>
+                </a>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   Durham University final year project modeling cardiac spiral waves using the FitzHugh-Nagumo framework. Built Python simulations with NumPy and Matplotlib to bridge mathematical modeling with biological systems, incorporating stochastic elements to represent natural cardiac variability. Developed using Jupyter notebooks and collaborative tools.
                 </p>
-                <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700 mb-6">
                   <p className="text-sm text-gray-400">
                     Python • NumPy • Matplotlib • Jupyter • Git • Google Colab
                   </p>
                 </div>
+                <a href="Jex_Pearce_Final_Project_III (8).pdf" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-3 border border-gray-600 hover:border-orange-400 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-400/20 hover:bg-orange-400/10 group">
+                  View Full Dissertation
+                  <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
+                </a>
               </div>
               
-              <div className="relative">
-                <div className="aspect-video relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900">
-                  {dissertationMedia[activeDissertationMedia].type === 'image' ? (
-                    <img 
-                      src={dissertationMedia[activeDissertationMedia].src} 
-                      alt={`Dissertation ${activeDissertationMedia + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <video 
-                      src={dissertationMedia[activeDissertationMedia].src}
-                      autoPlay
-                      loop
-                      muted
-                      className="w-full h-full object-cover"
-                    />
-                  )}
+              <div className="relative group max-w-lg mx-auto">
+                <div className="aspect-video relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 transition-all duration-500 group-hover:border-orange-400/50 group-hover:shadow-2xl group-hover:shadow-orange-400/20">
+                  <img 
+                    src="phasemap.jpeg" 
+                    alt="Cardiac Spiral Wave Phase Map"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-400/10 via-transparent to-red-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
-                <button
-                  onClick={() => setActiveDissertationMedia((prev) => (prev - 1 + dissertationMedia.length) % dissertationMedia.length)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <button
-                  onClick={() => setActiveDissertationMedia((prev) => (prev + 1) % dissertationMedia.length)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-gray-900/80 rounded-full hover:bg-gray-800 transition-colors"
-                >
-                  <ChevronRight size={20} />
-                </button>
               </div>
             </div>
           </div>

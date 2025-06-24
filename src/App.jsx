@@ -647,7 +647,7 @@ const App = () => {
                   <h3 className="text-3xl font-bold mb-4 text-orange-400 cursor-pointer hover:text-orange-300 transition-colors">Mathematics Dissertation</h3>
                 </a>
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  Durham University final year project modeling cardiac spiral waves using the FitzHugh-Nagumo framework. Built Python simulations with NumPy and Matplotlib to bridge mathematical modeling with biological systems, incorporating stochastic elements to represent natural cardiac variability. Developed using Jupyter notebooks and collaborative tools.
+                  Durham University final year project modeling cardiac spiral waves using the FitzHugh-Nagumo framework. Built Python simulations with NumPy and Matplotlib to bridge mathematical modeling with biological systems, incorporating stochastic elements to represent natural cardiac variability. Awarded a strong upper first class grade, and presented the project personally to the mathematical department at Durham.
                 </p>
                 <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700 mb-6">
                   <p className="text-sm text-gray-400">

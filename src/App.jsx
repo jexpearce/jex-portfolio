@@ -495,7 +495,7 @@ const App = () => {
           
           {/* Worldwide Population Report */}
           <div className="mb-20">
-            <a href="world_study/" target="_blank" rel="noopener noreferrer">
+            <a href="https://jexpearce.github.io/jex/world_study/" target="_blank" rel="noopener noreferrer">
               <h3 className="text-3xl font-bold mb-4 text-indigo-400 cursor-pointer hover:text-indigo-300 transition-colors group">
                 <Globe className="inline mr-2 group-hover:rotate-12 transition-transform duration-300" size={32} />
                 Worldwide Population Report
@@ -504,7 +504,7 @@ const App = () => {
             <p className="text-gray-300 mb-8 max-w-3xl">
               An extensive analysis of key demographic trends worldwide. Includes Population Pyramids, Heatmaps, and Scatterplots, allowing each reader to gain crucial insights into modern populations, such as Japan's aging citizens, male-to-female ratios in countries like India, and Africa's booming birth rate.
             </p>
-            <a href="world_study/" target="_blank" rel="noopener noreferrer"
+            <a href="https://jexpearce.github.io/jex/world_study/" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-3 border border-gray-600 hover:border-indigo-400 rounded-lg transition-colors mb-8">
               View Report
               <ExternalLink size={16} />
@@ -526,13 +526,13 @@ const App = () => {
           <div className="space-y-12">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <a href="Superyacht%20insights%20(1).pdf" target="_blank" rel="noopener noreferrer">
+                <a href="https://jexpearce.github.io/jex/Superyacht%20insights%20(1).pdf" target="_blank" rel="noopener noreferrer">
                   <h3 className="text-2xl font-bold mb-3 text-indigo-400 cursor-pointer hover:text-indigo-300 transition-colors">Market Report for Super Yachts</h3>
                 </a>
                 <p className="text-gray-300 mb-4">
                   A Python-driven analysis report on Super Yachts utilizing Web Scraping and SQL for data gathering, then Python for advanced visualization.
                 </p>
-                <a href="Superyacht%20insights%20(1).pdf" target="_blank" rel="noopener noreferrer"
+                <a href="https://jexpearce.github.io/jex/Superyacht%20insights%20(1).pdf" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors">
                   View Report
                   <ExternalLink size={16} />
@@ -543,13 +543,13 @@ const App = () => {
 
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <a href="5G Availability Report.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="https://jexpearce.github.io/jex/5G%20Availability%20Report.pdf" target="_blank" rel="noopener noreferrer">
                   <h3 className="text-2xl font-bold mb-3 text-indigo-400 cursor-pointer hover:text-indigo-300 transition-colors">Analysis of 5G Availability</h3>
                 </a>
                 <p className="text-gray-300 mb-4">
                   A visual analysis showcasing global 5G network availability, highlighting key cities, operators, and future trends.
                 </p>
-                <a href="5G Availability Report.pdf" target="_blank" rel="noopener noreferrer"
+                <a href="https://jexpearce.github.io/jex/5G%20Availability%20Report.pdf" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors">
                   View Report
                   <ExternalLink size={16} />

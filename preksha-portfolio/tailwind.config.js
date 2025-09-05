@@ -8,6 +8,8 @@ export default {
     extend: {
       fontFamily: {
         inter: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        jakarta: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        grotesk: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
         brand: {

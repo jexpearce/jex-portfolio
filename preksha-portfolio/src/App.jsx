@@ -19,10 +19,14 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Only 4 assets: 1 image + 3 videos in project root
-  const profileImage = '/media/image0.png';
-  const verticalVideos = ['/media/Video_1.MOV','/media/Video-1.MOV'];
-  const landscapeVideo = '/media/Video.MOV';
+  // Only 4 assets: 1 image + 3 videos
+  const base = import.meta.env.BASE_URL || '/';
+  const profileImage = `${base}media/image0.png`;
+  const verticalVideos = [
+    { mp4: `${base}media/Video_1.mp4`, fallback: `${base}media/Video_1.MOV` },
+    { mp4: `${base}media/Video-1.mp4`, fallback: `${base}media/Video-1.MOV` },
+  ];
+  const landscapeVideo = { mp4: `${base}media/Video.mp4`, fallback: `${base}media/Video.MOV` };
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -121,19 +125,15 @@ const Portfolio = () => {
       <section id="work" ref={reelsRef} className="py-24 px-[5%] max-w-[1400px] mx-auto">
         <h2 className="text-center text-[clamp(36px,5vw,48px)] font-bold mb-14 tracking-tight">MY WORK</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {verticalVideos.map((src, idx) => (
+          {verticalVideos.map((video, idx) => (
             <div key={idx} className="rounded-2xl overflow-hidden border border-white/10 bg-black/40 relative">
               <div className="absolute top-3 right-3 z-10 px-2 py-1 rounded-md text-[10px] font-semibold bg-black/60 border border-white/20 text-yellow-300">
                 Reels
               </div>
-              <video
-                src={src}
-                playsInline
-                muted
-                loop
-                preload="metadata"
-                className="w-full h-full object-cover aspect-[9/16]"
-              />
+              <video playsInline muted loop preload="metadata" className="w-full h-full object-cover aspect-[9/16]">
+                <source src={video.mp4} type="video/mp4" />
+                <source src={video.fallback} type="video/quicktime" />
+              </video>
             </div>
           ))}
         </div>
@@ -145,14 +145,10 @@ const Portfolio = () => {
           <div className="absolute top-3 right-3 z-10 px-2 py-1 rounded-md text-[10px] font-semibold bg-black/60 border border-white/20 text-yellow-300">
             Feature
           </div>
-          <video
-            src={landscapeVideo}
-            playsInline
-            muted
-            loop
-            preload="metadata"
-            className="w-full h-full object-cover aspect-video"
-          />
+          <video playsInline muted loop preload="metadata" className="w-full h-full object-cover aspect-video">
+            <source src={landscapeVideo.mp4} type="video/mp4" />
+            <source src={landscapeVideo.fallback} type="video/quicktime" />
+          </video>
         </div>
       </section>
 

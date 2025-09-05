@@ -20,9 +20,9 @@ const Portfolio = () => {
   }, []);
 
   // Only 4 assets: 1 image + 3 videos in project root
-  const profileImage = 'image0.png';
-  const verticalVideos = ['Video_1.MOV','Video-1.MOV'];
-  const landscapeVideo = 'Video.MOV';
+  const profileImage = '/media/image0.png';
+  const verticalVideos = ['/media/Video_1.MOV','/media/Video-1.MOV'];
+  const landscapeVideo = '/media/Video.MOV';
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -93,18 +93,23 @@ const Portfolio = () => {
       <section id="home" className="relative min-h-[100svh] flex items-center bg-gradient-to-br from-fuchsia-600/10 via-sky-500/10 to-emerald-500/10">
         <div className="mx-auto max-w-[1400px] grid md:grid-cols-[60%_40%] gap-10 items-center px-[5%] w-full">
           <div className="[animation:fadeInUp]">
-            <h1 className="text-[clamp(48px,8vw,88px)] font-extrabold leading-none tracking-tight font-grotesk">PREKSHA TYAGI</h1>
+            <div className="inline-block relative">
+              <h1 className="text-[clamp(48px,8vw,88px)] font-extrabold leading-none tracking-tight font-grotesk">PREKSHA TYAGI</h1>
+              <span className="absolute -inset-1 -z-10 rounded-xl blur-xl bg-[linear-gradient(135deg,#FFD70033,#00E5FF33)]" />
+            </div>
             <p className="text-lg text-neutral-300 mt-2 font-jakarta">Digital Marketing Strategist | Content Creator | Brand Storyteller</p>
             <div className="mt-6 text-[17px] leading-7 text-neutral-200 border border-white/10 rounded-xl bg-white/[.03] p-6 backdrop-blur-sm">
               Hey there! I'm Preksha Tyagi — an Economics & Business Management graduate with a creative spark and a data-driven mindset! 
               From building brand stories to boosting online visibility, I bring marketing strategies to life with flair and focus. 
               Whether it's crafting compelling campaigns or analyzing what makes audiences tick, I'm passionate about turning ideas into impact.
             </div>
-            <p className="mt-4 text-[20px] font-semibold text-[#8AF5FF] -tracking-[.5px]">Welcome to my digital marketing portfolio — where creativity meets conversion!</p>
+            <p className="mt-4 text-[20px] font-semibold -tracking-[.5px] bg-gradient-to-r from-[#FFD700] via-[#8AF5FF] to-[#FFD700] bg-clip-text text-transparent">Welcome to my digital marketing portfolio — where creativity meets conversion!</p>
           </div>
-          <div className="h-[500px] rounded-2xl border-2 border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.5)] relative overflow-hidden bg-neutral-900 flex items-center justify-center">
+          <div className="h-[500px] rounded-2xl border-2 border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.5)] relative overflow-hidden bg-neutral-900">
             <img src={profileImage} alt="Preksha" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-black/50 border border-yellow-400/50 text-yellow-300">FEATURED</div>
+            <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl" />
           </div>
         </div>
         <button onClick={() => scrollToSection('work')} className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounceX">
@@ -117,9 +122,12 @@ const Portfolio = () => {
         <h2 className="text-center text-[clamp(36px,5vw,48px)] font-bold mb-14 tracking-tight">MY WORK</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {verticalVideos.map((src, idx) => (
-            <div key={idx} className="rounded-2xl overflow-hidden border border-white/10 bg-black/40">
+            <div key={idx} className="rounded-2xl overflow-hidden border border-white/10 bg-black/40 relative">
+              <div className="absolute top-3 right-3 z-10 px-2 py-1 rounded-md text-[10px] font-semibold bg-black/60 border border-white/20 text-yellow-300">
+                Reels
+              </div>
               <video
-                src={`/${src}`}
+                src={src}
                 playsInline
                 muted
                 loop
@@ -133,9 +141,12 @@ const Portfolio = () => {
 
       {/* Landscape video near end */}
       <section id="portfolio" ref={landscapeRef} className="py-10 px-[5%] max-w-[1400px] mx-auto">
-        <div className="rounded-2xl overflow-hidden border border-white/10 bg-black/40">
+        <div className="rounded-2xl overflow-hidden border border-white/10 bg-black/40 relative">
+          <div className="absolute top-3 right-3 z-10 px-2 py-1 rounded-md text-[10px] font-semibold bg-black/60 border border-white/20 text-yellow-300">
+            Feature
+          </div>
           <video
-            src={`/${landscapeVideo}`}
+            src={landscapeVideo}
             playsInline
             muted
             loop

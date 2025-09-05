@@ -23,10 +23,10 @@ const Portfolio = () => {
   const base = import.meta.env.BASE_URL || '/';
   const profileImage = `${base}media/image0.png`;
   const verticalVideos = [
-    { mp4: `${base}media/Video_1.mp4`, fallback: `${base}media/Video_1.MOV` },
-    { mp4: `${base}media/Video-1.mp4`, fallback: `${base}media/Video-1.MOV` },
+    { mp4: `${base}media/vertical-1.mp4`, fallback: `${base}media/Video_1.MOV` },
+    { mp4: `${base}media/vertical-2.mp4`, fallback: `${base}media/Video-1.MOV` },
   ];
-  const landscapeVideo = { mp4: `${base}media/Video.mp4`, fallback: `${base}media/Video.MOV` };
+  const landscapeVideo = { mp4: `${base}media/feature.mp4`, fallback: `${base}media/Video.MOV` };
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -93,32 +93,39 @@ const Portfolio = () => {
         ))}
       </div>
 
-      {/* Hero */}
-      <section id="home" className="relative min-h-[100svh] flex items-center bg-gradient-to-br from-fuchsia-600/10 via-sky-500/10 to-emerald-500/10">
-        <div className="mx-auto max-w-[1400px] grid md:grid-cols-[60%_40%] gap-10 items-center px-[5%] w-full">
+      {/* Hero: Name + Photo only */}
+      <section id="home" className="relative min-h-[85svh] flex items-center bg-gradient-to-br from-fuchsia-600/10 via-sky-500/10 to-emerald-500/10">
+        <div className="mx-auto max-w-[1400px] grid md:grid-cols-2 gap-10 items-center px-[5%] w-full">
           <div className="[animation:fadeInUp]">
             <div className="inline-block relative">
               <h1 className="text-[clamp(48px,8vw,88px)] font-extrabold leading-none tracking-tight font-grotesk">PREKSHA TYAGI</h1>
               <span className="absolute -inset-1 -z-10 rounded-xl blur-xl bg-[linear-gradient(135deg,#FFD70033,#00E5FF33)]" />
             </div>
             <p className="text-lg text-neutral-300 mt-2 font-jakarta">Digital Marketing Strategist | Content Creator | Brand Storyteller</p>
-            <div className="mt-6 text-[17px] leading-7 text-neutral-200 border border-white/10 rounded-xl bg-white/[.03] p-6 backdrop-blur-sm">
-              Hey there! I'm Preksha Tyagi — an Economics & Business Management graduate with a creative spark and a data-driven mindset! 
-              From building brand stories to boosting online visibility, I bring marketing strategies to life with flair and focus. 
-              Whether it's crafting compelling campaigns or analyzing what makes audiences tick, I'm passionate about turning ideas into impact.
-            </div>
-            <p className="mt-4 text-[20px] font-semibold -tracking-[.5px] bg-gradient-to-r from-[#FFD700] via-[#8AF5FF] to-[#FFD700] bg-clip-text text-transparent">Welcome to my digital marketing portfolio — where creativity meets conversion!</p>
           </div>
-          <div className="h-[500px] rounded-2xl border-2 border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.5)] relative overflow-hidden bg-neutral-900">
+          <div className="h-[520px] rounded-2xl border-2 border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.5)] relative overflow-hidden bg-neutral-900">
             <img src={profileImage} alt="Preksha" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-black/50 border border-yellow-400/50 text-yellow-300">FEATURED</div>
             <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl" />
           </div>
         </div>
-        <button onClick={() => scrollToSection('work')} className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounceX">
+        <button onClick={() => scrollToSection('intro')} className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounceX">
           <ChevronDown size={30} color="#888" />
         </button>
+      </section>
+
+      {/* Intro: description + CTA */}
+      <section id="intro" className="py-20 px-[5%] max-w-[1200px] mx-auto">
+        <div className="text-[17px] leading-7 text-neutral-200 border border-white/10 rounded-xl bg-white/[.03] p-6 backdrop-blur-sm">
+          Hey there! I'm Preksha Tyagi — an Economics & Business Management graduate with a creative spark and a data-driven mindset.
+          From building brand stories to boosting online visibility, I bring marketing strategies to life with flair and focus.
+          Whether it's crafting compelling campaigns or analyzing what makes audiences tick, I'm passionate about turning ideas into impact.
+        </div>
+        <p className="mt-4 text-[20px] font-semibold -tracking-[.5px] bg-gradient-to-r from-[#FFD700] via-[#8AF5FF] to-[#FFD700] bg-clip-text text-transparent">Welcome to my digital marketing portfolio — where creativity meets conversion!</p>
+        <div className="mt-6 flex gap-4">
+          <button onClick={() => scrollToSection('work')} className="px-5 py-3 bg-[#FFD700] text-black font-semibold rounded-md">View My Work</button>
+          <button onClick={() => scrollToSection('contact')} className="px-5 py-3 border border-white/20 rounded-md">Get in Touch</button>
+        </div>
       </section>
 
       {/* Reels (2 portrait videos) */}

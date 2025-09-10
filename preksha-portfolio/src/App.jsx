@@ -159,58 +159,43 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Featured Pages - screenshots */}
-      <section id="brands" className="py-24 px-[5%] max-w-[1400px] mx-auto">
+      {/* Featured Pages */}
+      <section id="brands" className="py-24 px-[5%] max-w-[1100px] mx-auto">
         <h2 className="text-center text-[clamp(36px,5vw,48px)] font-bold mb-14 tracking-tight">FEATURED PAGES</h2>
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {/* the_weirdough_ */}
-          <a href="https://www.instagram.com/the_weirdough_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank" rel="noopener noreferrer" className="group rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] hover:-translate-y-1 transition-all">
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img
-                src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.instagram.com%2Fthe_weirdough_%2F?w=1200"
-                alt="@the_weirdough_ Instagram"
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-            <div className="p-4 flex items-center justify-between">
-              <div className="font-semibold">@the_weirdough_</div>
-              <ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
+          <a href="https://www.instagram.com/the_weirdough_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank" rel="noopener noreferrer" className="group rounded-2xl border border-white/10 bg-[#0a0a0a] p-5 hover:-translate-y-1 transition-all">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-pink-400 to-yellow-300" />
+              <div>
+                <div className="font-semibold">@the_weirdough_</div>
+                <div className="text-xs text-neutral-400">Instagram</div>
+              </div>
+              <div className="ml-auto"><ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" /></div>
             </div>
           </a>
 
-          {/* thedurhamstudent (TikTok) */}
-          <a href="https://www.tiktok.com/@thedurhamstudent?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" className="group rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] hover:-translate-y-1 transition-all">
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img
-                src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.tiktok.com%2F%40thedurhamstudent?w=1200"
-                alt="@thedurhamstudent TikTok"
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-            <div className="p-4 flex items-center justify-between">
-              <div className="font-semibold">@thedurhamstudent</div>
-              <ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
+          {/* thedurhamstudent */}
+          <a href="https://www.tiktok.com/@thedurhamstudent?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" className="group rounded-2xl border border-white/10 bg-[#0a0a0a] p-5 hover:-translate-y-1 transition-all">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-400 to-violet-400" />
+              <div>
+                <div className="font-semibold">@thedurhamstudent</div>
+                <div className="text-xs text-neutral-400">TikTok</div>
+              </div>
+              <div className="ml-auto"><ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" /></div>
             </div>
           </a>
 
           {/* JustParkHQ */}
-          <a href="https://www.instagram.com/justparkhq/" target="_blank" rel="noopener noreferrer" className="group rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] hover:-translate-y-1 transition-all">
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img
-                src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.instagram.com%2Fjustparkhq%2F?w=1200"
-                alt="@JustparkHQ Instagram"
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-            <div className="p-4 flex items-center justify-between">
-              <div className="font-semibold">@JustparkHQ</div>
-              <ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
+          <a href="https://www.instagram.com/justparkhq/" target="_blank" rel="noopener noreferrer" className="group rounded-2xl border border-white/10 bg-[#0a0a0a] p-5 hover:-translate-y-1 transition-all">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 to-teal-300" />
+              <div>
+                <div className="font-semibold">@JustparkHQ</div>
+                <div className="text-xs text-neutral-400">Instagram</div>
+              </div>
+              <div className="ml-auto"><ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" /></div>
             </div>
           </a>
         </div>

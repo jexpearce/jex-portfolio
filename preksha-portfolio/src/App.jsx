@@ -159,44 +159,79 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Skills */}
-      <section id="skills" className="py-24 px-[5%] max-w-[1400px] mx-auto">
-        <h2 className="text-center text-[clamp(36px,5vw,48px)] font-bold mb-14 tracking-tight">SKILLS & EXPERTISE</h2>
-        <div className="grid gap-7 [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]">
-          {[{
-            cat:'Content Creation', items:[
-              '• Video Production & Editing',
-              '• Photography & Visual Design',
-              '• Copywriting & Storytelling',
-              '• Trend Analysis & Adaptation']
-          },{
-            cat:'Social Media Management', items:[
-              '• Instagram Growth Strategy',
-              '• TikTok Content Optimization',
-              '• YouTube Channel Management',
-              '• Community Engagement']
-          },{
-            cat:'Analytics & Strategy', items:[
-              '• Data Analysis & Insights',
-              '• Campaign Planning & Execution',
-              '• ROI Tracking & Reporting',
-              '• A/B Testing & Optimization']
-          },{
-            cat:'Tools & Platforms', items:[
-              '• Meta Business Suite',
-              '• TikTok Analytics',
-              '• Canva & CapCut',
-              '• Google Analytics']
-          }].map((col, i) => (
-            <div key={i} className="bg-[#0a0a0a] p-9 rounded-xl border border-white/5">
-              <h3 className="text-lg font-semibold mb-5 text-[#00d4ff]">{col.cat}</h3>
-              <div className="flex flex-col gap-3 text-sm text-neutral-300">
-                {col.items.map((it, idx) => (
-                  <div key={idx}>{it}</div>
-                ))}
-              </div>
+      {/* Featured Pages - screenshots */}
+      <section id="brands" className="py-24 px-[5%] max-w-[1400px] mx-auto">
+        <h2 className="text-center text-[clamp(36px,5vw,48px)] font-bold mb-14 tracking-tight">FEATURED PAGES</h2>
+        <div className="grid gap-8 md:grid-cols-3">
+          {/* the_weirdough_ */}
+          <a href="https://www.instagram.com/the_weirdough_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank" rel="noopener noreferrer" className="group rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] hover:-translate-y-1 transition-all">
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img
+                src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.instagram.com%2Fthe_weirdough_%2F?w=1200"
+                alt="@the_weirdough_ Instagram"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
-          ))}
+            <div className="p-4 flex items-center justify-between">
+              <div className="font-semibold">@the_weirdough_</div>
+              <ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
+            </div>
+          </a>
+
+          {/* thedurhamstudent (TikTok) */}
+          <a href="https://www.tiktok.com/@thedurhamstudent?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" className="group rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] hover:-translate-y-1 transition-all">
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img
+                src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.tiktok.com%2F%40thedurhamstudent?w=1200"
+                alt="@thedurhamstudent TikTok"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+            <div className="p-4 flex items-center justify-between">
+              <div className="font-semibold">@thedurhamstudent</div>
+              <ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
+            </div>
+          </a>
+
+          {/* JustParkHQ */}
+          <a href="https://www.instagram.com/justparkhq/" target="_blank" rel="noopener noreferrer" className="group rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] hover:-translate-y-1 transition-all">
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img
+                src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.instagram.com%2Fjustparkhq%2F?w=1200"
+                alt="@JustparkHQ Instagram"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+            <div className="p-4 flex items-center justify-between">
+              <div className="font-semibold">@JustparkHQ</div>
+              <ExternalLink size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section id="skills" className="py-24 px-[5%] max-w-[1200px] mx-auto">
+        <h2 className="text-center text-[clamp(36px,5vw,48px)] font-bold mb-10 tracking-tight">SKILLS</h2>
+        <div className="space-y-6">
+          <div className="bg-[#0a0a0a] p-6 rounded-xl border border-white/10">
+            <h3 className="text-[#FFD700] font-semibold mb-2">Marketing & Campaigns</h3>
+            <p className="text-neutral-300 text-sm">B2B Marketing, CRM/Email Campaigns, Content Creation, Campaign Reporting, Social Media Strategy, Influencer Outreach, Event Marketing</p>
+          </div>
+          <div className="bg-[#0a0a0a] p-6 rounded-xl border border-white/10">
+            <h3 className="text-[#FFD700] font-semibold mb-2">Digital Tools & Analytics</h3>
+            <p className="text-neutral-300 text-sm">SEMrush, Google Search Console, Salesforce, Meta Business Suite, Google Analytics, Excel, SAS, Canva, Photoshop, Hootsuite</p>
+          </div>
+          <div className="bg-[#0a0a0a] p-6 rounded-xl border border-white/10">
+            <h3 className="text-[#FFD700] font-semibold mb-2">Soft Skills</h3>
+            <p className="text-neutral-300 text-sm">Attention to Detail, Problem-Solving, Organisation, Collaboration</p>
+          </div>
         </div>
       </section>
 
@@ -207,18 +242,14 @@ const Portfolio = () => {
         <h2 className="text-[clamp(32px,5vw,48px)] font-bold tracking-tight mb-3">LET'S CREATE SOMETHING AMAZING</h2>
         <p className="text-lg text-neutral-400 mb-10">Ready to elevate your brand's digital presence? Let's connect and discuss how we can work together.</p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#00d4ff] text-black font-semibold rounded-md">
+          <a href="mailto:emailtopreksha@gmail.com" className="inline-flex items-center gap-2 px-6 py-3 bg-[#00d4ff] text-black font-semibold rounded-md">
             <Mail size={20} />
-            Get in Touch
-          </button>
-          <button className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white rounded-md">
+            emailtopreksha@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/preksha-tyagi/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white rounded-md">
             <Linkedin size={20} />
             LinkedIn
-          </button>
-          <button className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white rounded-md">
-            <Download size={20} />
-            Download Resume
-          </button>
+          </a>
         </div>
       </section>
 

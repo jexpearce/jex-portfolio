@@ -377,13 +377,13 @@ const App = () => {
             <h4 className="font-semibold mb-4">Previews</h4>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="aspect-video relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
-                <img src="landingpage" alt="VivaEdu Landing Page" className="w-full h-full object-cover" />
+                <img src="landingpage.png" alt="VivaEdu Landing Page" className="w-full h-full object-cover" />
               </div>
               <div className="aspect-video relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
-                <img src="studentimage" alt="VivaEdu Student Preview" className="w-full h-full object-cover" />
+                <img src="studentimage.png" alt="VivaEdu Student Preview" className="w-full h-full object-cover" />
               </div>
               <div className="aspect-video relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
-                <img src="teacherimage" alt="VivaEdu Educator Preview" className="w-full h-full object-cover" />
+                <img src="teacherimage.png" alt="VivaEdu Educator Preview" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

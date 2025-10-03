@@ -208,7 +208,7 @@ const App = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-center">
             <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
-              {['About', 'iOS Apps', 'Data Science & Analytics', 'Creative Engineering', 'Contact'].map((item, index) => (
+              {['About', 'VivaEdu', 'iOS Apps', 'Data Science & Analytics', 'Creative Engineering', 'Contact'].map((item, index) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase().replace(/[&\s]/g, '-'))}
@@ -246,7 +246,7 @@ const App = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-orange-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-8 leading-relaxed">
-              Durham mathematics graduate creating unique iOS experiences. Built FL!P for the App Store, developing Loci in beta. Incredibly passionate about data science and experienced in data analytics.
+              Mathematics graduate focused on data assurance and analytics. I ship full‑stack, compliance‑minded products end‑to‑end — SQL/Python, dashboards, and data quality. Co‑founder & CTO of VivaEdu (Durham Venture Lab funded).
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
               <a href="https://www.durham.ac.uk/" target="_blank" rel="noopener noreferrer" 
@@ -306,6 +306,102 @@ const App = () => {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* VivaEdu Section */}
+      <section id="vivaedu" className="py-24 px-6 bg-gradient-to-b from-gray-900/40 to-gray-900/60 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-4xl font-bold mb-6 text-center relative group">
+            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent font-extrabold tracking-wide">VivaEdu</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 via-blue-400/30 to-indigo-400/30 -skew-y-1 scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-indigo-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-md"></div>
+          </h2>
+
+          <p className="text-center text-gray-300 max-w-3xl mx-auto mb-4">
+            Authentic assessment at scale. Grade with confidence in the AI age.
+          </p>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <a href="https://vivaedu.co.uk/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/50 group">
+              Website
+              <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
+            </a>
+            <a href="https://www.durham.ac.uk/study/careers-employability-enterprise/our-services/start-new-ventures/" target="_blank" rel="noopener noreferrer" className="px-4 py-3 border border-gray-600 hover:border-cyan-400 rounded-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 hover:bg-cyan-400/10 group">
+              Durham University Venture Lab
+              <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
+            </a>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
+            <div>
+              <h3 className="text-2xl font-bold mb-4">What is VivaEdu?</h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Assign short viva checks. Students defend their work on audio. Educators review transcripts and grade 3× faster — no AI‑detection chasing, just verifying real understanding. Backed by Durham University Venture Lab.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-4">
+                <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                  <p className="text-sm font-semibold mb-1">Step 1 · Assign</p>
+                  <p className="text-sm text-gray-400">Create viva prompts and follow‑ups; set prep and response times.</p>
+                </div>
+                <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                  <p className="text-sm font-semibold mb-1">Step 2 · Defend</p>
+                  <p className="text-sm text-gray-400">Students record asynchronously with accessibility accommodations.</p>
+                </div>
+                <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                  <p className="text-sm font-semibold mb-1">Step 3 · Review</p>
+                  <p className="text-sm text-gray-400">Transcript‑first review, feedback, and export grades to the LMS.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                <p className="text-sm text-gray-300"><span className="font-semibold">Designed for speed</span> — speech‑to‑text transcript review with batch moderation; seamless grading workflow.</p>
+              </div>
+              <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                <p className="text-sm text-gray-300"><span className="font-semibold">Defensible integrity</span> — hear the authentic voice of the student; verify reasoning, not detection scores.</p>
+              </div>
+              <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                <p className="text-sm text-gray-300"><span className="font-semibold">Scales to hundreds</span> — asynchronous, deadline‑based scheduling; fair, consistent, and repeatable.</p>
+              </div>
+              <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                <p className="text-sm text-gray-300"><span className="font-semibold">LMS Integrations</span> — Canvas • Blackboard • Moodle (LTI 1.3 compliant).</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div>
+              <h4 className="font-semibold mb-3">Evidence that oral defence works</h4>
+              <ul className="text-sm text-gray-300 space-y-2 list-disc pl-5">
+                <li>UC San Diego trial: 15‑minute oral exam → 14% higher next written test; motivation up (especially first‑gen students).</li>
+                <li>HEPI/Kortext 2025: digital tool usage 66% → 92% in one year; 88% used GenAI.</li>
+                <li>Study of 666 participants: heavy assistant reliance strongly negatively correlated with critical‑thinking (r ≈ −0.68).</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-3">Trusted, secure, and privacy‑first</h4>
+              <ul className="text-sm text-gray-300 space-y-2 list-disc pl-5">
+                <li>GDPR and DPA‑aligned; LTI 1.3 with scoped tokens.</li>
+                <li>Integrity signals (optional, consent‑based): gaze monitoring, tab‑switch detection, session anomaly flags.</li>
+                <li>Accessibility & accommodations: screen reader support, keyboard navigation, extra time, pause/resume, flexible retries, typing‑based alternative.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-semibold mb-4">Previews</h4>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
+              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
+              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
+              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
+              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
+            </div>
+          </div>
+
+          <p className="text-sm text-gray-400 mt-8 text-center">Interested in piloting VivaEdu? Join our early‑access cohorts for 2025–2026.</p>
         </div>
       </section>
 

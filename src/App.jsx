@@ -246,7 +246,7 @@ const App = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-orange-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-8 leading-relaxed">
-              Mathematics graduate focused on data assurance and analytics. I ship full‑stack, compliance‑minded products end‑to‑end — SQL/Python, dashboards, and data quality. Co‑founder & CTO of VivaEdu (Durham Venture Lab funded).
+              Mathematics graduate focused on data assurance and analytics. I ship full-stack products end to end. Co‑founder & CTO of VivaEdu (Durham Venture Lab funded).
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
               <a href="https://www.durham.ac.uk/" target="_blank" rel="noopener noreferrer" 
@@ -371,33 +371,20 @@ const App = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <div>
-              <h4 className="font-semibold mb-3">Evidence that oral defence works</h4>
-              <ul className="text-sm text-gray-300 space-y-2 list-disc pl-5">
-                <li>UC San Diego trial: 15‑minute oral exam → 14% higher next written test; motivation up (especially first‑gen students).</li>
-                <li>HEPI/Kortext 2025: digital tool usage 66% → 92% in one year; 88% used GenAI.</li>
-                <li>Study of 666 participants: heavy assistant reliance strongly negatively correlated with critical‑thinking (r ≈ −0.68).</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-3">Trusted, secure, and privacy‑first</h4>
-              <ul className="text-sm text-gray-300 space-y-2 list-disc pl-5">
-                <li>GDPR and DPA‑aligned; LTI 1.3 with scoped tokens.</li>
-                <li>Integrity signals (optional, consent‑based): gaze monitoring, tab‑switch detection, session anomaly flags.</li>
-                <li>Accessibility & accommodations: screen reader support, keyboard navigation, extra time, pause/resume, flexible retries, typing‑based alternative.</li>
-              </ul>
-            </div>
-          </div>
+          
 
           <div className="mb-4">
             <h4 className="font-semibold mb-4">Previews</h4>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
-              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
-              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
-              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
-              <div className="aspect-video rounded-xl border border-gray-800 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-gray-400">Image placeholder</div>
+              <div className="aspect-video relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+                <img src="landingpage" alt="VivaEdu Landing Page" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-video relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+                <img src="studentimage" alt="VivaEdu Student Preview" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-video relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+                <img src="teacherimage" alt="VivaEdu Educator Preview" className="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
 
